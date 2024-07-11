@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Set;
 
 public class TemplateModClient implements ClientModInitializer {
-	public static final String   MOD_ID = "more_item_predicates"	;
+	public static final String   MOD_ID = "mip"	;
 	public static final String   EMPTY 	  = "" 				;
 	public static final String[] ENCHANTMENTS_NAMES = {	"protection",		"fire_protection",		"feather_falling",	"blast_protection",	"projectile_protection",	"respiration",		"aqua_affinity",
 												"thorns", 		"depth_strider",		"frost_walker",	"binding_curse",	"soul_speed",			"swift_sneak",		"sharpness",
@@ -26,8 +26,9 @@ public class TemplateModClient implements ClientModInitializer {
 	
 	@Override
 	public void onInitializeClient() {
-		ModelPredicateProviderRegistry.register( Identifier.of(MOD_ID,"count")			, (stack, world, entity, seed) -> convertStackCountToFloat(stack.getCount()));
-		ModelPredicateProviderRegistry.register( Identifier.of(MOD_ID,"max_stack_size")		, (stack, world, entity, seed) -> convertStackCountToFloat(stack.getMaxCount()));
+		ModelPredicateProviderRegistry.register( Identifier.of(MOD_ID,"count")			, (stack, world, entity, seed) -> CoerceInt(stack.getCount()));
+		ModelPredicateProviderRegistry.register( Identifier.of(MOD_ID,"max_stack_size")		, (stack, world, entity, seed) -> CoerceInt(stack.getMaxCount()));
+		ModelPredicateProviderRegistry.register( Identifier.of(MOD_ID,"count_under")		, (stack, world, entity, seed) -> CoerceInt(stack.getMaxCount()-stack.getCount()));
 		
 		ModelPredicateProviderRegistry.register( Identifier.of(MOD_ID,"enchantments")		, (stack, world, entity, seed) -> convertEnchantmentsToFloat(stack, true) );
 		ModelPredicateProviderRegistry.register( Identifier.of(MOD_ID,"stored_enchantments")	, (stack, world, entity, seed) -> convertEnchantmentsToFloat(stack, false) );
@@ -51,9 +52,11 @@ public class TemplateModClient implements ClientModInitializer {
 		}
 	}
 	
-	private static float convertStackCountToFloat( int count){
+	private static float CoerceInt(int count){
 		return (float) count / 10000;
 	}
+	
+	
 	
 	private static float convertEnchantmentsToFloat(ItemStack stack, Boolean enchantmentsActive){
 		ComponentMap components = stack.getComponents();
