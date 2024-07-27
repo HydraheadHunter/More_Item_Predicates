@@ -1,34 +1,34 @@
 {
 	"schemaVersion": 1,
-	"id": "template-mod",
+	"id": "more-item-predicates",
 	"version": "${version}",
-	"name": "Template Mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "More Item Predicates",
+	"description": "Add more predicates so texture packs can render based on more information. The one I care about is enchanted books.",
 	"authors": [
-		"Me!"
+		"HydraheadHunter"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/mod/more-item-predicates",
+		"sources": "https://github.com/HydraheadHunter/More_Item_Predicates"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/template-mod/icon.png",
+	"icon": "assets/more-item-predicates/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"hydraheadhunter.cit.TemplateMod"
+			"hydraheadhunter.mip.MoreItemPredicates"
 		],
 		"client": [
-			"hydraheadhunter.cit.TemplateModClient"
+			"hydraheadhunter.mip.MoreItemPredicatesClient"
 		],
 		"fabric-datagen": [
-			"hydraheadhunter.cit.TemplateModDataGenerator"
+			"hydraheadhunter.mip.MoreItemPredicatesDataGenerator"
 		]
 	},
 	"mixins": [
-		"template-mod.mixins.json",
+		"more-item-predicates.mixins.json",
 		{
-			"config": "template-mod.client.mixins.json",
+			"config": "more-item-predicates.client.mixins.json",
 			"environment": "client"
 		}
 	],
@@ -39,6 +39,5 @@
 		"fabric-api": "*"
 	},
 	"suggests": {
-		"another-mod": "*"
 	}
 }

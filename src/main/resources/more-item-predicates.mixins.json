@@ -1,6 +1,6 @@
 {
 	"required": true,
-	"package": "hydraheadhunter.cit.mixin",
+	"package": "hydraheadhunter.mip.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
 		"ExampleMixin"
